@@ -70,43 +70,43 @@ function Add-AppLockerPolicyPublisherRule {
             $appLockerPolicyElement = $AppLockerPolicyDocument.SelectSingleNode("/AppLockerPolicy/RuleCollection[@Type='$Collection']");
             if ($null -eq $appLockerPolicyElement)
             {
-                $appLockerPolicyElement = XmlElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
-                    XmlAttribute -Name Type -Value $Collection;
-                    XmlAttribute -Name EnforcementMode -Value 'NotConfigured';
+                $appLockerPolicyElement = Add-XmlExElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
+                    Add-XmlExAttribute -Name Type -Value $Collection;
+                    Add-XmlExAttribute -Name EnforcementMode -Value 'NotConfigured';
                 }
             }
 
-            XmlElement -Name 'FilePublisherRule' -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
-                XmlAttribute -Name 'Id' -Value $Id;
-                XmlAttribute -Name 'Name' -Value $Name;
-                XmlAttribute -Name 'Description' -Value $Description;
-                XmlAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
-                XmlAttribute -Name 'Action' -Value $Action;
-                XmlElement -Name 'Conditions' {
-                    XmlElement -Name 'FilePublisherCondition' {
-                        XmlAttribute -Name 'PublisherName' -Value $Publisher;
-                        XmlAttribute -Name 'ProductName' -Value $ProductName;
-                        XmlAttribute -Name 'BinaryName' -Value $BinaryName;
-                        XmlElement -Name 'BinaryVersionRange' {
+            Add-XmlExElement -Name 'FilePublisherRule' -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
+                Add-XmlExAttribute -Name 'Id' -Value $Id;
+                Add-XmlExAttribute -Name 'Name' -Value $Name;
+                Add-XmlExAttribute -Name 'Description' -Value $Description;
+                Add-XmlExAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
+                Add-XmlExAttribute -Name 'Action' -Value $Action;
+                Add-XmlExElement -Name 'Conditions' {
+                    Add-XmlExElement -Name 'FilePublisherCondition' {
+                        Add-XmlExAttribute -Name 'PublisherName' -Value $Publisher;
+                        Add-XmlExAttribute -Name 'ProductName' -Value $ProductName;
+                        Add-XmlExAttribute -Name 'BinaryName' -Value $BinaryName;
+                        Add-XmlExElement -Name 'BinaryVersionRange' {
                             if ($MinimumBinaryVersion -and $MaximumBinaryVersion) {
-                                XmlAttribute -Name 'LowSection' -Value $MinimumBinaryVersion;
-                                XmlAttribute -Name 'HighSection' -Value $MaximumBinaryVersion;
+                                Add-XmlExAttribute -Name 'LowSection' -Value $MinimumBinaryVersion;
+                                Add-XmlExAttribute -Name 'HighSection' -Value $MaximumBinaryVersion;
                             }
                             elseif ($MinimumBinaryVersion) {
-                                XmlAttribute -Name 'LowSection' -Value $MinimumBinaryVersion;
-                                XmlAttribute -Name 'HighSection' -Value '*';
+                                Add-XmlExAttribute -Name 'LowSection' -Value $MinimumBinaryVersion;
+                                Add-XmlExAttribute -Name 'HighSection' -Value '*';
                             }
                             elseif ($ExactBinaryVersion) {
-                                XmlAttribute -Name 'LowSection' -Value $ExactBinaryVersion;
-                                XmlAttribute -Name 'HighSection' -Value $ExactBinaryVersion;
+                                Add-XmlExAttribute -Name 'LowSection' -Value $ExactBinaryVersion;
+                                Add-XmlExAttribute -Name 'HighSection' -Value $ExactBinaryVersion;
                             }
                             elseif ($MaximumBinaryVersion) {
-                                XmlAttribute -Name 'LowSection' -Value '*';
-                                XmlAttribute -Name 'HighSection' -Value $MaximumBinaryVersion;
+                                Add-XmlExAttribute -Name 'LowSection' -Value '*';
+                                Add-XmlExAttribute -Name 'HighSection' -Value $MaximumBinaryVersion;
                             }
                             else {
-                                XmlAttribute -Name 'LowSection' -Value '*';
-                                XmlAttribute -Name 'HighSection' -Value '*';
+                                Add-XmlExAttribute -Name 'LowSection' -Value '*';
+                                Add-XmlExAttribute -Name 'HighSection' -Value '*';
                             }
                         } #binaryVersionRange
                     } #filePublisherCondition

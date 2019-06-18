@@ -69,25 +69,25 @@ function Add-AppLockerPolicyHashRule {
             $appLockerPolicyElement = $AppLockerPolicyDocument.SelectSingleNode("/AppLockerPolicy/RuleCollection[@Type='$Collection']");
             if ($null -eq $appLockerPolicyElement)
             {
-                $appLockerPolicyElement = XmlElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
-                    XmlAttribute -Name Type -Value $Collection;
-                    XmlAttribute -Name EnforcementMode -Value 'NotConfigured';
+                $appLockerPolicyElement = Add-XmlExElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
+                    Add-XmlExAttribute -Name Type -Value $Collection;
+                    Add-XmlExAttribute -Name EnforcementMode -Value 'NotConfigured';
                 }
             }
 
-            XmlElement -Name FileHashRule -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
-                XmlAttribute -Name 'Id' -Value $Id;
-                XmlAttribute -Name 'Name' -Value $Name;
-                XmlAttribute -Name 'Description' -Value $Description;
-                XmlAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
-                XmlAttribute -Name 'Action' -Value $Action;
-                XmlElement -Name 'Conditions' {
-                    XmlElement -Name 'FileHashCondition' {
-                        XmlElement -Name 'FileHash' {
-                            XmlAttribute -Name 'Type' -Value $Type;
-                            XmlAttribute -Name 'Data' -Value $Data;
-                            XmlAttribute -Name 'SourceFileName' -Value $SourceFileName;
-                            XmlAttribute -Name 'SourceFileLength' -Value $SourceFileLength;
+            Add-XmlExElement -Name FileHashRule -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
+                Add-XmlExAttribute -Name 'Id' -Value $Id;
+                Add-XmlExAttribute -Name 'Name' -Value $Name;
+                Add-XmlExAttribute -Name 'Description' -Value $Description;
+                Add-XmlExAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
+                Add-XmlExAttribute -Name 'Action' -Value $Action;
+                Add-XmlExElement -Name 'Conditions' {
+                    Add-XmlExElement -Name 'FileHashCondition' {
+                        Add-XmlExElement -Name 'FileHash' {
+                            Add-XmlExAttribute -Name 'Type' -Value $Type;
+                            Add-XmlExAttribute -Name 'Data' -Value $Data;
+                            Add-XmlExAttribute -Name 'SourceFileName' -Value $SourceFileName;
+                            Add-XmlExAttribute -Name 'SourceFileLength' -Value $SourceFileLength;
                         }
                     } #end FileHashCondition
                 } #end Conditions

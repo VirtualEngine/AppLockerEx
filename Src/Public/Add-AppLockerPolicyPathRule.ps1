@@ -50,21 +50,21 @@ function Add-AppLockerPolicyPathRule {
             $appLockerPolicyElement = $AppLockerPolicyDocument.SelectSingleNode("/AppLockerPolicy/RuleCollection[@Type='$Collection']");
             if ($null -eq $appLockerPolicyElement)
             {
-                $appLockerPolicyElement = XmlElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
-                    XmlAttribute -Name Type -Value $Collection;
-                    XmlAttribute -Name EnforcementMode -Value 'NotConfigured';
+                $appLockerPolicyElement = Add-XmlExElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
+                    Add-XmlExAttribute -Name Type -Value $Collection;
+                    Add-XmlExAttribute -Name EnforcementMode -Value 'NotConfigured';
                 }
             }
 
-            XmlElement -Name 'FilePathRule' -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
-                XmlAttribute -Name 'Id' -Value $Id;
-                XmlAttribute -Name 'Name' -Value $Name;
-                XmlAttribute -Name 'Description' -Value $Description;
-                XmlAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
-                XmlAttribute -Name 'Action' -Value $Action;
-                XmlElement -Name 'Conditions' {
-                    XmlElement -Name 'FilePathCondition' {
-                        XmlAttribute -Name 'Path' -Value $Path; ## TODO: check if its a leaf object and append '\*' if not?
+            Add-XmlExElement -Name 'FilePathRule' -XmlElement $appLockerPolicyElement -PassThru:$PassThru {
+                Add-XmlExAttribute -Name 'Id' -Value $Id;
+                Add-XmlExAttribute -Name 'Name' -Value $Name;
+                Add-XmlExAttribute -Name 'Description' -Value $Description;
+                Add-XmlExAttribute -Name 'UserOrGroupSid' -Value $UserOrGroupSid;
+                Add-XmlExAttribute -Name 'Action' -Value $Action;
+                Add-XmlExElement -Name 'Conditions' {
+                    Add-XmlExElement -Name 'FilePathCondition' {
+                        Add-XmlExAttribute -Name 'Path' -Value $Path; ## TODO: check if its a leaf object and append '\*' if not?
                     }
                 } #conditions
             } #filePathRule

@@ -5,6 +5,7 @@
 function New-AppLockerPolicyDocument {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     [OutputType([System.Xml.XmlDocument])]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param (
         [Parameter(ParameterSetName = 'DefaultRuleset')]
         [System.Management.Automation.SwitchParameter] $CreateDefaultRuleset,
@@ -15,9 +16,9 @@ function New-AppLockerPolicyDocument {
     )
     process
     {
-        $appLockerPolicyDocument = XmlDocument {
-            XmlElement -Name AppLockerPolicy -PassThru {
-                XmlAttribute -Name Version -Value '1';
+        $appLockerPolicyDocument = New-XmlExDocument {
+            Add-XmlExElement -Name AppLockerPolicy -PassThru {
+                Add-XmlExAttribute -Name Version -Value '1';
             }
         }
         if ($CreateDefaultRuleset)

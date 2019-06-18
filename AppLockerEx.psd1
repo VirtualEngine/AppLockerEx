@@ -7,7 +7,6 @@
     Copyright = '(c) 2019 Virtual Engine Limited. All rights reserved.';
     Description = 'Programmatcally create AppLocker Policy (XML) documents with PowerShell.';
     PowerShellVersion = '3.0';
-    RequiredModules = @('AppLocker');
     FunctionsToExport = @(
                             'Add-AppLockerPolicyComment',
                             'Add-AppLockerPolicyHashRule',
