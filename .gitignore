@@ -1,0 +1,10 @@
+/Release
+/bin
+/obj
+*.sln
+*.suo
+*.pssproj
+*.mof
+/.vscode
+TestResults.xml
+appveyor-tools/
