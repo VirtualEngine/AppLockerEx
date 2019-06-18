@@ -5,6 +5,7 @@
 function Set-AppLockerPolicyEnforcementMode
 {
     [CmdletBinding()]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param (
         ## AppLocker XmlDocument to prepend the comment to.
         [Parameter(Mandatory, ValueFromPipeline)]

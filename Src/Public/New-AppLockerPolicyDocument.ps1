@@ -5,6 +5,7 @@
 function New-AppLockerPolicyDocument {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     [OutputType([System.Xml.XmlDocument])]
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param (
         [Parameter(ParameterSetName = 'DefaultRuleset')]
         [System.Management.Automation.SwitchParameter] $CreateDefaultRuleset,
