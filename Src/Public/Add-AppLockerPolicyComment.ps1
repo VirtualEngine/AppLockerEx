@@ -26,7 +26,7 @@ function Add-AppLockerPolicyComment {
         try
         {
             $appLockerPolicyElement = $AppLockerPolicyDocument.SelectSingleNode("/AppLockerPolicy");
-            XmlComment -Comment $Comment -XmlElement $appLockerPolicyElement -Prepend -PassThru:$PassThru
+            Add-XmlExComment -Comment $Comment -XmlElement $appLockerPolicyElement -Prepend -PassThru:$PassThru
         }
         catch
         {

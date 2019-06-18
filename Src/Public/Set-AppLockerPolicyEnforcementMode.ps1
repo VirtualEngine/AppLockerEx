@@ -29,9 +29,9 @@ function Set-AppLockerPolicyEnforcementMode
                 $appLockerPolicyElement = $AppLockerPolicyDocument.SelectSingleNode("/AppLockerPolicy/RuleCollection[@Type='$Collection']");
                 if ($null -eq $AppLockerPolicyElement)
                 {
-                    $appLockerPolicyElement = XmlElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
-                        XmlAttribute -Name Type -Value $ruleCollection;
-                        XmlAttribute -Name EnforcementMode -Value $EnforcementMode;
+                    $appLockerPolicyElement = Add-XmlExElement -Name RuleCollection -XmlElement $AppLockerPolicyDocument.FirstChild -PassThru {
+                        Add-XmlExAttribute -Name Type -Value $ruleCollection;
+                        Add-XmlExAttribute -Name EnforcementMode -Value $EnforcementMode;
                     }
                 }
                 else

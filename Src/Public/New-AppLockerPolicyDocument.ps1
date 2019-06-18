@@ -16,9 +16,9 @@ function New-AppLockerPolicyDocument {
     )
     process
     {
-        $appLockerPolicyDocument = XmlDocument {
-            XmlElement -Name AppLockerPolicy -PassThru {
-                XmlAttribute -Name Version -Value '1';
+        $appLockerPolicyDocument = New-XmlExDocument {
+            Add-XmlExElement -Name AppLockerPolicy -PassThru {
+                Add-XmlExAttribute -Name Version -Value '1';
             }
         }
         if ($CreateDefaultRuleset)
